@@ -177,11 +177,6 @@ export const useLive2DModel = ({
       await setupModel(model);
     } catch (error) {
       console.error("Failed to load Live2D model:", error);
-      toaster.create({
-        title: `Failed to load Live2D model: ${error}`,
-        type: "error",
-        duration: 2000,
-      });
     } finally {
       loadingRef.current = false;
       setIsLoading(false);

@@ -132,12 +132,6 @@ function WebSocketHandler({ children }: { children: React.ReactNode }) {
         setAiState('idle');
         setSubtitleText('New Character Loaded');
 
-        toaster.create({
-          title: 'Character switched',
-          type: 'success',
-          duration: 2000,
-        });
-
         // setModelInfo(undefined);
 
         wsService.sendMessage({ type: 'fetch-history-list' });
@@ -167,11 +161,6 @@ function WebSocketHandler({ children }: { children: React.ReactNode }) {
         if (message.messages) {
           setMessages(message.messages);
         }
-        toaster.create({
-          title: 'History loaded',
-          type: 'success',
-          duration: 2000,
-        });
         break;
       case 'new-history-created':
         setAiState('idle');
@@ -186,21 +175,9 @@ function WebSocketHandler({ children }: { children: React.ReactNode }) {
             timestamp: new Date().toISOString(),
           };
           setHistoryList((prev: HistoryInfo[]) => [newHistory, ...prev]);
-          toaster.create({
-            title: 'New chat history created',
-            type: 'success',
-            duration: 2000,
-          });
         }
         break;
       case 'history-deleted':
-        toaster.create({
-          title: message.success
-            ? 'History deleted successfully'
-            : 'Failed to delete history',
-          type: message.success ? 'success' : 'error',
-          duration: 2000,
-        });
         break;
       case 'history-list':
         if (message.histories) {
@@ -217,11 +194,6 @@ function WebSocketHandler({ children }: { children: React.ReactNode }) {
         }
         break;
       case 'error':
-        toaster.create({
-          title: message.message,
-          type: 'error',
-          duration: 2000,
-        });
         break;
       case 'group-update':
         console.log('Received group-update:', message.members);
@@ -233,11 +205,6 @@ function WebSocketHandler({ children }: { children: React.ReactNode }) {
         }
         break;
       case 'group-operation-result':
-        toaster.create({
-          title: message.message,
-          type: message.success ? 'success' : 'error',
-          duration: 2000,
-        });
         break;
       case 'backend-synth-complete':
         setBackendSynthComplete(true);
@@ -286,6 +253,13 @@ function WebSocketHandler({ children }: { children: React.ReactNode }) {
     baseUrl,
     setBaseUrl,
   }), [wsState, wsUrl, baseUrl]);
+
+
+  useEffect(()=> {
+    setWsUrl(defaultWsUrl)
+    setBaseUrl(defaultBaseUrl)
+    console.log(defaultBaseUrl, "-----000000")
+  },[setWsUrl, setBaseUrl])
 
   return (
     <WebSocketContext.Provider value={webSocketContextValue}>

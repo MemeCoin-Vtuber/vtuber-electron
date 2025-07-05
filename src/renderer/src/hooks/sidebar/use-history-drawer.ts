@@ -32,11 +32,6 @@ export const useHistoryDrawer = () => {
 
   const deleteHistory = (uid: string) => {
     if (uid === currentHistoryUid) {
-      toaster.create({
-        title: 'Cannot delete current chat history',
-        type: 'warning',
-        duration: 2000,
-      });
       return;
     }
 

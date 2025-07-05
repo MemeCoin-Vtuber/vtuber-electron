@@ -48,11 +48,6 @@ export function useMediaCapture() {
       return canvas.toDataURL('image/jpeg', 0.8);
     } catch (error) {
       console.error(`Error capturing ${source} frame:`, error);
-      toaster.create({
-        title: `Failed to capture ${source} frame: ${error}`,
-        type: 'error',
-        duration: 2000,
-      });
       return null;
     }
   }, []);

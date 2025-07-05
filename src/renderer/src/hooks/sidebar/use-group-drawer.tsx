@@ -16,11 +16,6 @@ export const useGroupDrawer = () => {
 
   const handleInvite = useCallback(async () => {
     if (!inviteUid.trim()) {
-      toaster.create({
-        title: 'Please enter a valid UUID',
-        type: 'error',
-        duration: 2000,
-      });
       return;
     }
 

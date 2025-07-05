@@ -53,11 +53,6 @@ export function ScreenCaptureProvider({ children }: { children: ReactNode }) {
       setError('');
     } catch (err) {
       setError('Failed to start screen capture');
-      toaster.create({
-        title: `Failed to start screen capture: ${err}`,
-        type: 'error',
-        duration: 2000,
-      });
       console.error(err);
     }
   };

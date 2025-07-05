@@ -145,11 +145,7 @@ export function Live2DConfigProvider({ children }: { children: React.ReactNode }
     // Validate configuration UID exists
     if (!confUid) {
       console.warn("Attempting to set model info without confUid");
-      toaster.create({
-        title: "Attempting to set model info without confUid",
-        type: "error",
-        duration: 2000,
-      });
+
       return;
     }
 

@@ -12,6 +12,7 @@ export const useFooter = () => {
     inputText: inputValue,
     setInputText: handleChange,
     handleKeyPress: handleKey,
+    handleSend,
     handleCompositionStart,
     handleCompositionEnd,
   } = useTextInput();
@@ -26,6 +27,12 @@ export const useFooter = () => {
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     handleChange({ target: { value: e.target.value } } as ChangeEvent<HTMLInputElement>);
     setAiState(AiStateEnum.WAITING);
+  };
+
+  const handleMessageChange = (message: string) => {
+    handleChange({ target: { value: message } } as ChangeEvent<HTMLInputElement>);
+    setAiState(AiStateEnum.THINKING_SPEAKING);
+    handleSend();
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -51,6 +58,7 @@ export const useFooter = () => {
     handleCompositionEnd,
     handleInterrupt,
     handleMicToggle,
+    handleMessageChange,
     micOn,
   };
 };

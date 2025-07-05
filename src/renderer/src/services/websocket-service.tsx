@@ -121,11 +121,6 @@ class WebSocketService {
           this.messageSubject.next(message);
         } catch (error) {
           console.error('Failed to parse WebSocket message:', error);
-          toaster.create({
-            title: `Failed to parse WebSocket message: ${error}`,
-            type: "error",
-            duration: 2000,
-          });
         }
       };
 
@@ -150,11 +145,6 @@ class WebSocketService {
       this.ws.send(JSON.stringify(message));
     } else {
       console.warn('WebSocket is not open. Unable to send message:', message);
-      toaster.create({
-        title: 'WebSocket is not open.',
-        type: 'error',
-        duration: 2000,
-      });
     }
   }
 

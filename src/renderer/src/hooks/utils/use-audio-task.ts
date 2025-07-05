@@ -110,11 +110,6 @@ export const useAudioTask = () => {
       checkFinished();
     } catch (error) {
       console.error('Speak function error:', error);
-      toaster.create({
-        title: `Speak function error: ${error}`,
-        type: "error",
-        duration: 2000,
-      });
       resolve();
     }
   });

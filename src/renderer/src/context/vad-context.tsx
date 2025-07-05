@@ -293,11 +293,6 @@ export function VADProvider({ children }: { children: React.ReactNode }) {
       setMicOn(true);
     } catch (error) {
       console.error('Failed to start VAD:', error);
-      toaster.create({
-        title: `Failed to start VAD: ${error}`,
-        type: 'error',
-        duration: 2000,
-      });
     }
   }, []);
 

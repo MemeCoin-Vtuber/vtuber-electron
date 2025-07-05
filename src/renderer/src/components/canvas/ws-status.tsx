@@ -28,7 +28,7 @@ const WebSocketStatus = memo((): JSX.Element => {
         opacity: isDisconnected ? 0.8 : 1,
       }}
     >
-      <MemoizedStatusContent text={text} />
+      <MemoizedStatusContent text={text === "Connected" ? "Streaming" : text} />
     </Box>
   );
 });
