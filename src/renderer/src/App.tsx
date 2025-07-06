@@ -85,10 +85,7 @@ function App(): JSX.Element {
                             <GroupProvider>
                               <WebSocketHandler>
                                 <Toaster />
-                                <>
-                                  <Canvas />
-                                  <Live2D isPet={mode === 'pet'} />
-                                </>
+                                <Canvas />
                                 <YoutubeMessages />
                               </WebSocketHandler>
                             </GroupProvider>
