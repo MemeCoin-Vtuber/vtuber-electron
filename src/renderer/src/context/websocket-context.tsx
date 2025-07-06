@@ -3,8 +3,8 @@ import React, { useContext, useCallback } from 'react';
 import { wsService } from '@/services/websocket-service';
 import { useLocalStorage } from '@/hooks/utils/use-local-storage';
 
-const DEFAULT_WS_URL = 'wss://shilltube.spredd.markets/client-ws';
-const DEFAULT_BASE_URL = 'https://shilltube.spredd.markets';
+const DEFAULT_WS_URL = 'ws://localhost:12393/client-ws';
+const DEFAULT_BASE_URL = 'http://localhost:12393';
 
 export interface HistoryInfo {
   uid: string;
