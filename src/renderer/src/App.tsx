@@ -2,7 +2,7 @@
 import {
   Box, Flex, ChakraProvider, defaultSystem,
 } from '@chakra-ui/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Canvas from './components/canvas/canvas';
 import { AiStateProvider } from './context/ai-state-context';
 import { Live2DConfigProvider } from './context/live2d-config-context';
@@ -31,6 +31,20 @@ function App(): JSX.Element {
 
   const [mode, setMode] = useState('window');
   const isElectron = window.api !== undefined;
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (audio === null) {
+      return;
+    }
+
+    audio.loop = true;
+    audio.volume = 0.1;
+    audio.play().catch(e => console.log("Autoplay blocked:", e));
+  }, []);
 
   useEffect(() => {
     if (isElectron) {
@@ -87,6 +101,9 @@ function App(): JSX.Element {
                                 <Toaster />
                                 <Canvas />
                                 <YoutubeMessages />
+                                <audio ref={audioRef}>
+                                  <source src="background.mp3" type="audio/mpeg" />
+                                </audio>
                               </WebSocketHandler>
                             </GroupProvider>
                           </BgUrlProvider>
