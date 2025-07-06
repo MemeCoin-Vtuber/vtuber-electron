@@ -55,10 +55,11 @@ export class WindowManager {
 
   createWindow(options: Electron.BrowserWindowConstructorOptions): BrowserWindow {
     this.window = new BrowserWindow({
-      width: 900,
-      height: 670,
+      width: 1920,
+      height: 1080,
       show: false,
       transparent: true,
+      fullscreen: true,
       backgroundColor: '#ffffff',
       autoHideMenuBar: true,
       frame: false,
