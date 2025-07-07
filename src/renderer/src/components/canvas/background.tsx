@@ -9,7 +9,7 @@ const Background = memo(({ children }: { children?: React.ReactNode }) => {
   const {
     backgroundStream, isBackgroundStreaming, startBackgroundCamera, stopBackgroundCamera,
   } = useCamera();
-  const { useCameraBackground, backgroundUrl } = useBgUrl();
+  const { useCameraBackground, backgroundUrl, newsImageUrl } = useBgUrl();
 
   useEffect(() => {
     if (useCameraBackground) {
@@ -40,11 +40,34 @@ const Background = memo(({ children }: { children?: React.ReactNode }) => {
           }}
         />
       ) : (
-        <Image
-          {...canvasStyles.background.image}
-          src={backgroundUrl}
-          alt="background"
-        />
+        <>
+          <div
+            style={{
+              position: 'fixed',
+              top: '280px',
+              left: '190px',
+              width: '510px',
+              height: '280px',
+              overflow: 'hidden',
+              zIndex: 100,
+            }}
+          >
+            <img
+              src={newsImageUrl || "https://img.freepik.com/free-photo/abstract-geometric-background-shapes-texture_1194-301824.jpg?semt=ais_hybrid&w=740"}
+              alt="background"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+          <Image
+            {...canvasStyles.background.image}
+            src={backgroundUrl}
+            alt="background"
+          />
+        </>
       )}
       {children}
     </Box>

@@ -1,5 +1,6 @@
 /* eslint-disable react/require-default-props */
 
+import { useBgUrl } from "@/context/bgurl-context";
 import { useWebSocket } from "@/context/websocket-context";
 import { useEffect, useState, useCallback, useRef } from "react";
 
@@ -8,6 +9,7 @@ type News = {
     title: string;
     description: string;
     source: string;
+    image: string;
     isRead: boolean;
     createdAt: string;
     updatedAt: string;
@@ -22,6 +24,7 @@ type ApiResponse = {
 // Main component
 function NewsFeed(): JSX.Element {
     const [news, setNews] = useState<News | null>(null);
+    const { setNewsImageUrl } = useBgUrl();
     const [error, setError] = useState<string | null>(null);
     const lastNewsIdRef = useRef<number | null>(null);
     const isLoadingRef = useRef<boolean>(false);
@@ -55,6 +58,7 @@ function NewsFeed(): JSX.Element {
             if (data.success && data.data) {
                 if (lastNewsIdRef.current !== data.data.id) {
                     setNews(data.data);
+                    setNewsImageUrl(data.data.image);
                     lastNewsIdRef.current = data.data.id;
                     console.log('New news fetched:', data.data.title);
                 } else {

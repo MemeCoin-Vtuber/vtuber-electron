@@ -28,6 +28,8 @@ export interface BgUrlContextState {
   isDefaultBackground: boolean;
   useCameraBackground: boolean;
   setUseCameraBackground: (use: boolean) => void;
+  newsImageUrl: string | null;
+  setNewsImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 /**
@@ -42,7 +44,7 @@ const BgUrlContext = createContext<BgUrlContextState | null>(null);
  */
 export function BgUrlProvider({ children }: { children: React.ReactNode }) {
   const { baseUrl } = useWebSocket();
-  const DEFAULT_BACKGROUND = `${baseUrl}/bg/cyberpunk.png`;
+  const DEFAULT_BACKGROUND = `${baseUrl}/bg/news.webp`;
 
   // Local storage for persistent background URL
   const [backgroundUrl, setBackgroundUrl] = useLocalStorage<string>(
@@ -52,6 +54,8 @@ export function BgUrlProvider({ children }: { children: React.ReactNode }) {
 
   // State for background files list
   const [backgroundFiles, setBackgroundFiles] = useState<BackgroundFile[]>([]);
+  const [newsImageUrl, setNewsImageUrl] = useState<string | null>(null);
+
 
   // Reset background to default
   const resetBackground = useCallback(() => {
@@ -88,7 +92,9 @@ export function BgUrlProvider({ children }: { children: React.ReactNode }) {
     isDefaultBackground,
     useCameraBackground,
     setUseCameraBackground,
-  }), [backgroundUrl, setBackgroundUrl, backgroundFiles, resetBackground, addBackgroundFile, removeBackgroundFile, isDefaultBackground, useCameraBackground]);
+    newsImageUrl,
+    setNewsImageUrl
+  }), [backgroundUrl, setBackgroundUrl, backgroundFiles, resetBackground, addBackgroundFile, removeBackgroundFile, isDefaultBackground, useCameraBackground, newsImageUrl, setNewsImageUrl]);
 
   return (
     <BgUrlContext.Provider value={contextValue}>
