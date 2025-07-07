@@ -44,7 +44,7 @@ const Background = memo(({ children }: { children?: React.ReactNode }) => {
           <div
             style={{
               position: 'fixed',
-              top: '250px',
+              top: '340',
               left: '235px',
               width: '660px',
               height: '370px',
