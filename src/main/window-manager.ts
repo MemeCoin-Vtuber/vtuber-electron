@@ -59,7 +59,6 @@ export class WindowManager {
       height: 1080,
       show: false,
       transparent: true,
-      fullscreen: true,
       backgroundColor: '#ffffff',
       autoHideMenuBar: true,
       frame: false,
