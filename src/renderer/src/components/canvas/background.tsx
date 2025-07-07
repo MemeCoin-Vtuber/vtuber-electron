@@ -44,10 +44,10 @@ const Background = memo(({ children }: { children?: React.ReactNode }) => {
           <div
             style={{
               position: 'fixed',
-              top: '280px',
-              left: '190px',
-              width: '510px',
-              height: '280px',
+              top: '250px',
+              left: '235px',
+              width: '660px',
+              height: '370px',
               overflow: 'hidden',
               zIndex: 100,
             }}
